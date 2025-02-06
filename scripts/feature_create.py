@@ -15,7 +15,8 @@ def create_features(df):
     # Transaction frequency (number of transactions per user)
     df['transaction_frequency'] = df.groupby('user_id')['user_id'].transform('count')
     
-    # Transaction velocity (time between transactions)
-    df['time_since_last_transaction'] = df.groupby('user_id')['purchase_time'].diff().dt.total_seconds()
+    # Transaction velocity (time between transactions) using shift
+    previous_time = df.groupby('user_id')['purchase_time'].shift(1)
+    df['time_since_last_transaction'] = (df['purchase_time'] - previous_time).dt.total_seconds()
     
     return df
