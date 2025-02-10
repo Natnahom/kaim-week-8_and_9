@@ -23,7 +23,6 @@ def define_models():
         'LSTM': None  # Placeholder for LSTM
     }
 
-# Function to train and evaluate CNN
 def train_cnn(X_train, y_train, X_test, y_test):
     model = Sequential()
     model.add(Conv1D(32, kernel_size=3, activation='relu', input_shape=(X_train.shape[1], 1)))
@@ -31,19 +30,18 @@ def train_cnn(X_train, y_train, X_test, y_test):
     model.add(Dense(64, activation='relu'))
     model.add(Dropout(0.5))
     model.add(Dense(1, activation='sigmoid'))
-    
+
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    
-    # Reshaping for CNN
-    X_train_reshaped = X_train.values.reshape((X_train.shape[0], X_train.shape[1], 1))
-    X_test_reshaped = X_test.values.reshape((X_test.shape[0], X_test.shape[1], 1))
-    
+
+    # Reshape for CNN
+    X_train_reshaped = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
+    X_test_reshaped = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
+
     model.fit(X_train_reshaped, y_train, epochs=10, batch_size=32, verbose=0)
     y_pred = (model.predict(X_test_reshaped) > 0.5).astype("int32")
     
     return y_pred, model
 
-# Function to train and evaluate RNN
 def train_rnn(X_train, y_train, X_test, y_test):
     model = Sequential()
     model.add(LSTM(50, return_sequences=True, input_shape=(X_train.shape[1], 1)))
@@ -51,24 +49,30 @@ def train_rnn(X_train, y_train, X_test, y_test):
     model.add(LSTM(50))
     model.add(Dropout(0.5))
     model.add(Dense(1, activation='sigmoid'))
-    
+
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-    
-    # Reshaping for RNN
-    X_train_reshaped = X_train.values.reshape((X_train.shape[0], X_train.shape[1], 1))
-    X_test_reshaped = X_test.values.reshape((X_test.shape[0], X_test.shape[1], 1))
-    
+
+    # Reshape for RNN
+    X_train_reshaped = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
+    X_test_reshaped = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
+
     model.fit(X_train_reshaped, y_train, epochs=10, batch_size=32, verbose=0)
     y_pred = (model.predict(X_test_reshaped) > 0.5).astype("int32")
     
     return y_pred, model
 
-# Function to evaluate models
 def evaluate_models(X_train, y_train, X_test, y_test, models):
     results = {}
     for name, model in models.items():
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
+        if model is None:  # Skip placeholders
+            if name == 'CNN':
+                y_pred, model = train_cnn(X_train, y_train, X_test, y_test)
+            elif name == 'RNN':
+                y_pred, model = train_rnn(X_train, y_train, X_test, y_test)
+        else:
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+
         results[name] = {
             'report': classification_report(y_test, y_pred),
             'confusion_matrix': confusion_matrix(y_test, y_pred),
@@ -76,14 +80,19 @@ def evaluate_models(X_train, y_train, X_test, y_test, models):
         }
     return results
 
-# Function to log results with MLflow
 def log_results(models, X_train, y_train, X_test, y_test):
     with mlflow.start_run():
         for name, model in models.items():
-            model.fit(X_train, y_train)
-            y_pred = model.predict(X_test)
+            if model is None:  # Handle CNN and RNN separately
+                if name == 'CNN':
+                    y_pred, model = train_cnn(X_train, y_train, X_test, y_test)
+                elif name == 'RNN':
+                    y_pred, model = train_rnn(X_train, y_train, X_test, y_test)
+            else:
+                model.fit(X_train, y_train)
+                y_pred = model.predict(X_test)
+
             mlflow.sklearn.log_model(model, name)
             accuracy = np.mean(y_pred == y_test)
             mlflow.log_metric("accuracy", accuracy)
             mlflow.log_param("model_name", name)
-
