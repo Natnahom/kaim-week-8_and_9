@@ -18,9 +18,9 @@ def define_models():
         'Random Forest': RandomForestClassifier(),
         'Gradient Boosting': GradientBoostingClassifier(),
         'MLP': MLPClassifier(max_iter=1000),
-        'CNN': None,  # Placeholder for CNN
-        'RNN': None,  # Placeholder for RNN
-        'LSTM': None  # Placeholder for LSTM
+        # 'CNN': None,  # Placeholder for CNN
+        # 'RNN': None,  # Placeholder for RNN
+        # 'LSTM': None  # Placeholder for LSTM
     }
 
 def train_cnn(X_train, y_train, X_test, y_test):
