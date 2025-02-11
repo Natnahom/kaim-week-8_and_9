@@ -65,10 +65,10 @@ def merge_geolocation_data(fraud_df, ip_country_df):
         left_on='ip_int',
         right_on='lower_bound_int',
         direction='backward',
-        suffixes=('', '_country')  # Optional: to avoid column name clashes
+        suffixes=('', '_country')  # to avoid column name clashes
     )
     
-    # If desired, you can fill NaN in the country column with "No Country" or similar
+    # Fill NaN in the country column with "No Country" or similar
     # merged_df['country'] = merged_df['country'].fillna('No Country')
     
     return merged_df
