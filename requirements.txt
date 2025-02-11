@@ -3,3 +3,6 @@ pandas
 seaborn
 matplotlib
 scikit-learn
+tensorflow
+mlflow
+scipy
