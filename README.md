@@ -79,5 +79,69 @@ Description: Encodes categorical variables using one-hot encoding.
     - pip install -r requirements.txt
 3. Follow analysis1.ipynb file to run each functions
 
+# Task 2: Model Implementation and Evaluation
+
+In Task 2, we focus on implementing and evaluating various machine learning models to detect fraudulent transactions. The steps involved include:
+
+1. **Data Preparation**: 
+   - Load the dataset and preprocess it, including handling missing values, encoding categorical features, and normalizing numerical features.
+   - Split the dataset into training and testing sets to evaluate model performance on unseen data.
+
+2. **Model Training**:
+   - Define a set of models, including both traditional machine learning algorithms and deep learning models.
+
+   - For each model, fit the training data and adjust hyperparameters as necessary. This includes:
+
+     - Logistic Regression: A linear model that predicts the probability of fraud based on input features.
+
+     - Decision Trees: A non-linear model that builds a tree-like structure for making decisions based on feature splits.
+
+     - Random Forest: An ensemble method that combines multiple decision trees for improved accuracy and robustness.
+
+     - Gradient Boosting: Another ensemble method that builds models sequentially, each trying to correct the errors of the previous ones.
+
+     - Multi-layer Perceptron (MLP): A neural network model with one or more hidden layers to capture complex relationships.
+
+     - Convolutional Neural Network (CNN): A deep learning model often used for image processing but adapted here for feature extraction.
+     - Recurrent Neural Network (RNN) and Long Short-Term Memory (LSTM) networks: Models designed to handle sequential data, capturing temporal dependencies.
+
+3. **Model Evaluation**:
+   - Evaluate each model using metrics such as accuracy, precision, recall, and F1-score.
+   - Generate confusion matrices to visualize the performance of each model in predicting fraud versus non-fraud cases.
+   - Log the results using MLflow for easy comparison and tracking of model performance across different runs.
+
+Through this task, we aim to identify the most effective model for detecting fraud, balancing accuracy with the ability to generalize to new, unseen data.
+
+This project implements various machine learning models for fraud detection, including traditional models and neural networks. The goal is to evaluate and compare these models based on their performance metrics.
+
+## Features
+
+- Implementation of the following models:
+  - Logistic Regression
+  - Decision Tree Classifier
+  - Random Forest Classifier
+  - Gradient Boosting Classifier
+  - Multi-layer Perceptron (MLP)
+  - Convolutional Neural Network (CNN)
+  - Recurrent Neural Network (RNN)
+  - Long Short-Term Memory (LSTM)
+
+- Model evaluation using metrics such as accuracy, confusion matrix, and classification report.
+- Logging of model results using MLflow for easier tracking of experiments.
+
+## Installation
+
+1. Clone the repository:
+
+2. Create a virtual environment (optional but recommended):
+- python -m venv venv
+source venv/bin/activate  `venv\Scripts\activate`
+
+Install the required packages:
+- pip install -r requirements.txt
+
+## Usage
+- Follow the modelTraining.ipynb
+
 Author: Natnahom Asfaw
 Date: 06/02/2025
