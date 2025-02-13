@@ -132,7 +132,8 @@ def evaluate_models(X_train, y_train, X_test, y_test, models):
         results[name] = {
             'report': classification_report(y_test, y_pred),
             'confusion_matrix': confusion_matrix(y_test, y_pred),
-            'accuracy': np.mean(y_pred == y_test)
+            'accuracy': np.mean(y_pred == y_test),
+            'model': model
         }
     return results
 
