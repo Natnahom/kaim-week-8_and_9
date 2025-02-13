@@ -147,19 +147,20 @@ def log_results(models, X_train, y_train, X_test, y_test):
     - X_test: Test features
     - y_test: Test labels
     """
-    with mlflow.start_run():
+    with mlflow.start_run() as run:
         for name, model in models.items():
-            if model is None:  # Handle CNN and RNN separately
-                if name == 'CNN':
-                    y_pred, model = train_cnn(X_train, y_train, X_test, y_test)
-                elif name == 'RNN':
-                    y_pred, model = train_rnn(X_train, y_train, X_test, y_test)
-            else:
-                model.fit(X_train, y_train)  # Fit the traditional model
-                y_pred = model.predict(X_test)
+            with mlflow.start_run(nested=True):
+                if model is None:  # Handle CNN and RNN separately
+                    if name == 'CNN':
+                        y_pred, model = train_cnn(X_train, y_train, X_test, y_test)
+                    elif name == 'RNN':
+                        y_pred, model = train_rnn(X_train, y_train, X_test, y_test)
+                else:
+                    model.fit(X_train, y_train)  # Fit the traditional model
+                    y_pred = model.predict(X_test)
 
-            # Log the model and its performance
-            mlflow.sklearn.log_model(model, name)
-            accuracy = np.mean(y_pred == y_test)
-            mlflow.log_metric("accuracy", accuracy)
-            mlflow.log_param("model_name", name)
+                # Log the model and its performance
+                mlflow.sklearn.log_model(model, name)
+                accuracy = np.mean(y_pred == y_test)
+                mlflow.log_metric("accuracy", accuracy)
+                mlflow.log_param("model_name", name)  # This is now unique per nested run
