@@ -1,0 +1,12 @@
+artifact_path: LSTM
+flavors:
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+mlflow_version: 2.20.1
+model_size_bytes: 4
+model_uuid: 5298a11616314744a7bccbf951a89f8a
+run_id: 5bfe0a8556b74b4da43fcf2eb39d2f84
+utc_time_created: '2025-02-13 12:38:52.431374'

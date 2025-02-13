@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/pc/Desktop/10_Academy/Week-8%269/kaim-week-8_and_9/notebooks/mlruns/0/5bfe0a8556b74b4da43fcf2eb39d2f84/artifacts
+end_time: 1739450337001
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5bfe0a8556b74b4da43fcf2eb39d2f84
+run_name: tasteful-zebra-690
+run_uuid: 5bfe0a8556b74b4da43fcf2eb39d2f84
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739450332312
+status: 3
+tags: []
+user_id: pc
