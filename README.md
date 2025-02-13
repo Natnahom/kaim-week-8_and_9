@@ -143,5 +143,62 @@ Install the required packages:
 ## Usage
 - Follow the modelTraining.ipynb
 
+# Task 3: Model Evaluation and Interpretation
+
+## Overview
+
+This project focuses on evaluating and interpreting machine learning models for fraud detection using SHAP (SHapley Additive exPlanations) and LIME (Local Interpretable Model-agnostic Explanations). The goal is to understand the model's decisions and enhance trust in the predictions made.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Model Evaluation](#model-evaluation)
+- [Interpretation of Results](#interpretation-of-results)
+- [Dependencies](#dependencies)
+- [License](#license)
+
+## Installation
+
+To run this project, you'll need to set up your environment with the required libraries. You can do this using pip. Create a virtual environment and install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+1. Load the Dataset: Ensure your dataset is prepared and loaded correctly into the script.
+2. Train Models: The script includes functions to train various machine learning models on the dataset.
+3. Evaluate Models: Run the evaluation function to assess model performance metrics such as accuracy, precision, and recall.
+4. Generate SHAP Values: Use the shap_expl function to generate SHAP values and visualize the feature importances.
+5. Create LIME Explanations: Use the lime_expl function to generate local explanations for specific predictions.
+
+## Model Evaluation
+The evaluation function calculates various metrics, including:
+
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- Confusion Matrix
+These metrics help assess the performance of the models in detecting fraudulent transactions.
+
+## Interpretation of Results
+SHAP and LIME provide insights into model behavior:
+
+SHAP: Offers global insights into feature importance across all predictions and local insights for individual predictions.
+LIME: Focuses on explaining individual predictions, highlighting which features contributed most to the model's decision.
+Dependencies
+- pandas
+- numpy
+- scikit-learn
+- shap
+- lime
+- matplotlib
+- seaborn
+
+Make sure to install these libraries using the requirements file.
+Then follow the modelTraining.ipynb
+
 Author: Natnahom Asfaw
 Date: 06/02/2025
