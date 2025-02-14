@@ -10,7 +10,7 @@ app = Flask(__name__)
 setup_logging()
 
 # Load the model
-model = load_model('model/fraud_model.pkl')  # Adjust the path as necessary
+model = load_model('../model/fraud_model.pkl')  # Adjust the path as necessary
 
 @app.route('/predict', methods=['POST'])
 def predict_endpoint():
@@ -21,6 +21,11 @@ def predict_endpoint():
     - JSON response containing predictions.
     """
     data = request.json
+
+    # Ensure data is provided
+    if not data:
+        return jsonify({"error": "No input data provided"}), 400
+
     # Convert JSON to DataFrame
     input_data = pd.DataFrame(data)
 
@@ -29,7 +34,7 @@ def predict_endpoint():
 
     return jsonify(predictions.tolist())
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
     """
     Home route for testing the API.
