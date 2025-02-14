@@ -11,4 +11,3 @@ def save_model(model, model_path):
     # Save the trained model to a .pkl file
     joblib.dump(model, model_path)
     print(f"Model saved to {model_path}")
-    return model_path
