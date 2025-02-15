@@ -10,7 +10,7 @@ app = Flask(__name__)
 setup_logging()
 
 # Load the model
-model = load_model('../model/fraud_model.pkl')  # Adjust the path as necessary
+model = load_model('../model/cred_model.pkl')
 
 @app.route('/predict', methods=['POST'])
 def predict_endpoint():
@@ -42,4 +42,4 @@ def home():
     Returns:
     - Simple message indicating the API is running.
     """
-    return "<p>Fraud Detection API is running!</p>"
+    return "<h1>Fraud Detection API is running!</h1>"
