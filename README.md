@@ -200,5 +200,70 @@ Dependencies
 Make sure to install these libraries using the requirements file.
 Then follow the modelTraining.ipynb
 
+# Task 4: Fraud Detection API
+
+## Overview
+
+Task 4 involves developing an API for fraud detection in financial transactions. The primary goal is to create a robust, scalable web service that can analyze transaction data in real-time and predict whether a transaction is fraudulent. The API utilizes machine learning models trained on historical transaction data to make these predictions.
+
+## Objectives
+
+- **Implement a RESTful API**: Create endpoints that allow users to submit transaction data and receive fraud predictions.
+- **Machine Learning Integration**: Train and integrate a machine learning model capable of identifying fraudulent transactions based on features such as transaction amount, user behavior, and timestamps.
+- **Dockerize the Application**: Use Docker to containerize the application, making it easy to deploy in different environments.
+- **Logging and Monitoring**: Implement logging to track requests and responses for auditing and monitoring purposes.
+
+## Features
+
+- **Input Validation**: Ensure that incoming transaction data is validated before processing.
+- **Real-time Predictions**: Provide immediate feedback on whether a transaction is likely to be fraudulent.
+- **Scalability**: The application is designed to handle multiple requests simultaneously, making it suitable for high-traffic environments.
+- **Comprehensive Logging**: Track API usage and errors through a detailed logging system.
+
+## Getting Started
+
+### Prerequisites
+
+- Docker
+- Python 3.9+
+- Flask
+- Required Python libraries (listed in `requirements.txt`)
+
+### To run the api
+- Use postman if needed or
+
+- cd app
+- flask --app serve_model app
+
+### Installation
+
+1. **Clone the repository**:
+
+2. **Build the Docker image**:
+- docker build -t fraud-detection-api .
+
+3. **Run the Docker container**:
+- docker run -p 5000:5000 fraud-detection-api
+
+### API Endpoints
+1. POST /predict
+- Description: Analyzes a transaction and predicts if it is fraudulent.
+- Request Body:
+{
+  "transaction_id": "123456",
+  "amount": 100.0,
+  "timestamp": "2023-01-01T12:00:00Z",
+  "user_id": "user123"
+}
+- Response:
+{
+  "transaction_id": "123456",
+  "is_fraud": true,
+  "confidence_score": 0.95
+}
+
+## Logging
+The API includes logging functionality to monitor requests and responses. Logs are saved to the app/logs directory, which can be useful for debugging and analyzing the performance of the model.
+
 Author: Natnahom Asfaw
 Date: 06/02/2025
