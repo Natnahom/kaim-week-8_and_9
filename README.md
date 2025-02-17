@@ -265,5 +265,82 @@ Task 4 involves developing an API for fraud detection in financial transactions.
 ## Logging
 The API includes logging functionality to monitor requests and responses. Logs are saved to the app/logs directory, which can be useful for debugging and analyzing the performance of the model.
 
+# Task 5 - Fraud Detection Dashboard with Flask and Dash
+This project involves creating an interactive dashboard using Flask and Dash to visualize fraud insights from a dataset. The Flask backend serves data from a CSV file, while Dash handles the frontend visualizations.
+
+## Project Structure
+kaim-week-8_and_9/
+  dashboard/
+  │
+  ├── app.py                  # Flask backend
+  ├── dashboard.py             # Dash frontend
+  ├── templates/
+  │   └── index.html          # HTML template for the dashboard
+  ├── static/
+  │   └── style.css          # Custom CSS for styling the dashboard
+  requirements.txt        # Python dependencies
+
+## Features
+1. Flask Backend: Serves data via API endpoints.
+
+- /api/summary: Returns summary statistics (total transactions, fraud cases, fraud percentage).
+
+- /api/trends: Returns fraud trends over time.
+
+- /api/product_value: Returns product value distribution of fraud cases.
+
+- /api/age: Returns age distribution of fraud cases.
+
+- /api/geographic: Returns geographic distribution of fraud cases.
+
+- /api/device_browser: Returns fraud cases by device and browser.
+
+2. Dash Frontend: Visualizes data fetched from the Flask backend.
+
+3. Summary Boxes: Display total transactions, fraud cases, and fraud percentage.
+
+4. Line Chart: Shows the number of detected fraud cases over time.
+
+5. Bar Chart: Compares the number of fraud cases across different devices and browsers.
+
+6. Geographic Map: Displays fraud cases by location.
+
+## Installation
+1. Clone the Repository:
+
+2. Install Dependencies:
+
+- pip install -r requirements.txt
+Run the Flask Backend:
+
+- python app.py
+Run the Dash Frontend:
+
+- python dashboard.py
+Access the Dashboard:
+
+Flask app: http://127.0.0.1:5000/
+
+Dash app: http://127.0.0.1:8050/
+
+## Usage
+Flask Backend: The backend serves data through API endpoints. You can test these endpoints by visiting them in your browser or using tools like curl or Postman.
+
+Dash Frontend: The frontend fetches data from the Flask backend and displays it in an interactive dashboard. You can interact with the charts and visualizations directly in the browser.
+
+## Customization
+Data: Replace Data/Fraud_Data.csv with your own dataset. Ensure the column names match those expected by the Flask backend.
+
+Styling: Modify static/style.css to customize the appearance of the dashboard.
+
+Additional Features: Extend the Flask backend or Dash frontend to include more visualizations or functionality as needed.
+
+## Troubleshooting
+Data Not Displaying: Ensure that the Flask backend is running and accessible. Check the browser console for any errors related to fetching data.
+
+Styling Issues: Verify that the path to styles.css is correct and the file is accessible.
+
+Endpoint Errors: Ensure that the endpoint names in the Flask backend match those used in the Dash frontend.
+
 Author: Natnahom Asfaw
 Date: 06/02/2025
